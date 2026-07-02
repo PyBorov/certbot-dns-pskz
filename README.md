@@ -1,4 +1,4 @@
-# certbot-dns-pskz 
+# certbot-dns-pskz
 
 [![CI](https://github.com/PyBorov/certbot-dns-pskz/actions/workflows/ci.yml/badge.svg)](https://github.com/PyBorov/certbot-dns-pskz/actions/workflows/ci.yml)
 [![PyPI](https://img.shields.io/pypi/v/certbot-dns-pskz.svg)](https://pypi.org/project/certbot-dns-pskz/)

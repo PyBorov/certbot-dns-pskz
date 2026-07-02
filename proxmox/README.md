@@ -56,7 +56,7 @@ chmod 600 /etc/pve/priv/pskz.env
 ## 4. Регистрация ACME-аккаунта (если ещё не сделано)
 
 ```bash
-pvenode acme account register default admins@exmpl.kz
+pvenode acme account register default admins@example.kz
 ```
 
 ## 5. Добавление DNS-плагина
@@ -68,7 +68,7 @@ pvenode acme plugin add dns pskz --api pskz --data /etc/pve/priv/pskz.env
 ## 6. Привязка домена к узлу и заказ сертификата
 
 ```bash
-pvenode config set --acmedomain0 proxmox.exmpl.kz,plugin=pskz
+pvenode config set --acmedomain0 proxmox.example.kz,plugin=pskz
 pvenode acme cert order
 ```
 
@@ -83,9 +83,9 @@ pvenode acme cert order
 ```bash
 export PSKZ_Token="xxxxxxxxxxxxxxxx.accountid.userid"
 source /usr/share/proxmox-acme/dnsapi/dns_pskz.sh
-dns_pskz_add "_acme-challenge.proxmox.exmpl.kz" "test-value-123"
+dns_pskz_add "_acme-challenge.proxmox.example.kz" "test-value-123"
 # проверь, что TXT-запись появилась в консоли ps.kz, затем:
-dns_pskz_rm "_acme-challenge.proxmox.exmpl.kz" "test-value-123"
+dns_pskz_rm "_acme-challenge.proxmox.example.kz" "test-value-123"
 ```
 
 Скрипт пишет диагностику (`Resolved ps.kz zone: ...`) в stderr — она попадёт
@@ -118,7 +118,7 @@ sudo cp proxmox/pbs-deploy.sh /etc/letsencrypt/pskz/pbs-deploy.sh
 sudo chmod 700 /etc/letsencrypt/pskz/pbs-deploy.sh
 
 sudo cp proxmox/pbs-storage-hosts.txt.example /etc/letsencrypt/pskz/pbs-storage-hosts.txt
-sudo "$EDITOR" /etc/letsencrypt/pskz/pbs-storage-hosts.txt   # впиши свои хосты
+sudo "$EDITOR" /etc/letsencrypt/pskz/pbs-storage-hosts.txt   # впиши свои 10 хостов
 ```
 
 **Требование:** passwordless SSH по ключу с хоста PBS на все перечисленные
@@ -133,9 +133,9 @@ sudo certbot certonly \
   --dns-pskz-credentials /etc/letsencrypt/pskz/credentials.ini \
   --renew-hook "/etc/letsencrypt/pskz/pbs-deploy.sh" \
   --agree-tos -n \
-  -m admins@exmpl.kz \
-  -d backup.exmpl.kz \
-  --cert-name backup.exmpl.kz
+  -m admins@example.kz \
+  -d backup.example.kz \
+  --cert-name backup.example.kz
 ```
 
 `--renew-hook` не срабатывает при первом `certonly` (только при
@@ -143,14 +143,14 @@ sudo certbot certonly \
 скрипт руками, эмулируя переменную, которую обычно подставляет certbot:
 
 ```bash
-export RENEWED_LINEAGE="/etc/letsencrypt/live/backup.exmpl.kz"
+export RENEWED_LINEAGE="/etc/letsencrypt/live/backup.example.kz"
 sudo -E bash -x /etc/letsencrypt/pskz/pbs-deploy.sh
 ```
 
 ### Проверка
 
 ```bash
-sudo certbot renew --dry-run --cert-name backup.exmpl.kz
+sudo certbot renew --dry-run --cert-name backup.example.kz
 proxmox-backup-manager cert info | grep Fingerprint
 ```
 

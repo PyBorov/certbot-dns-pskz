@@ -105,7 +105,7 @@ class _PSKZClient:
         """Find the most specific zone accessible to this token that
         matches ``domain``, walking up the label hierarchy.
 
-        e.g. for wiki.exmpl.kz it tries: wiki.exmpl.kz, exmpl.kz, asia
+        e.g. for wiki.example.kz it tries: wiki.example.kz, example.kz, kz
         """
         candidate = domain.rstrip(".")
         while candidate:

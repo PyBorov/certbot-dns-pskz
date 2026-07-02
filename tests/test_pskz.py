@@ -33,20 +33,20 @@ class TestFindZone:
     def test_walks_up_labels_until_match(self, mocker):
         client = _PSKZClient("token")
         mock_post = mocker.patch.object(client.session, "post")
-        # First lookup (wiki.exmpl.kz) finds nothing, second (exmpl.kz) matches
+        # First lookup (wiki.example.kz) finds nothing, second (example.kz) matches
         mock_post.side_effect = [
             _resp({"data": {"dns": {"zones": {"items": []}}}}),
             _resp(
-                {"data": {"dns": {"zones": {"items": [{"name": "exmpl.kz."}]}}}}
+                {"data": {"dns": {"zones": {"items": [{"name": "example.kz."}]}}}}
             ),
         ]
 
-        zone = client._find_zone("wiki.exmpl.kz")
+        zone = client._find_zone("wiki.example.kz")
 
-        assert zone == "exmpl.kz."
+        assert zone == "example.kz."
         assert mock_post.call_count == 2
         second_call_vars = mock_post.call_args_list[1].kwargs["json"]["variables"]
-        assert second_call_vars["s"] == "exmpl.kz"
+        assert second_call_vars["s"] == "example.kz"
 
     def test_raises_when_no_zone_accessible(self, mocker):
         client = _PSKZClient("token")
@@ -60,7 +60,7 @@ class TestFindZone:
 
     def test_ignores_non_matching_zones_in_response(self, mocker):
         # Regression test: the API previously returned an unrelated zone
-        # first (e.g. valis.kz for a wiki.exmpl.kz lookup); make sure we
+        # first (e.g. valis.kz for a wiki.example.kz lookup); make sure we
         # only accept an exact (dot-stripped) name match, not "any item".
         client = _PSKZClient("token")
         mock_post = mocker.patch.object(client.session, "post")
