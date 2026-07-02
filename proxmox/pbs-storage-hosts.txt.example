@@ -1,0 +1,15 @@
+# Формат: <hostname-или-ip> <storage-id>
+# Пустые строки и строки начинающиеся с # игнорируются.
+# storage-id — это имя, под которым PBS зарегистрирован как storage
+# на конкретной ноде (может отличаться от ноды к ноде).
+
+pve1 pbs-storage
+pve2 pbs-storage
+pve3 pbs-storage
+pve4 pbs-storage
+pve5 pbs-storage
+pve6 pbs-storage
+pve7 pbs-storage
+pve8 pbs-storage
+pve9 pbs-storage
+pve10 pbs-storage
