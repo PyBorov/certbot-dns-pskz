@@ -118,7 +118,7 @@ sudo cp proxmox/pbs-deploy.sh /etc/letsencrypt/pskz/pbs-deploy.sh
 sudo chmod 700 /etc/letsencrypt/pskz/pbs-deploy.sh
 
 sudo cp proxmox/pbs-storage-hosts.txt.example /etc/letsencrypt/pskz/pbs-storage-hosts.txt
-sudo "$EDITOR" /etc/letsencrypt/pskz/pbs-storage-hosts.txt   # впиши свои 10 хостов
+sudo "$EDITOR" /etc/letsencrypt/pskz/pbs-storage-hosts.txt   # впиши свои хосты
 ```
 
 **Требование:** passwordless SSH по ключу с хоста PBS на все перечисленные
