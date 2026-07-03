@@ -32,6 +32,8 @@ Certbot-аутентификатор.
 
 ```bash
 pip install certbot-dns-pskz
+#Alma Linux 10 и может еще RHEL подобные:
+pip install --prefix=/usr certbot-dns-pskz
 ```
 
 Либо из исходников:
